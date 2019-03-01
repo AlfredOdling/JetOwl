@@ -1,6 +1,6 @@
 import React from 'react'
-import { Platform, StatusBar, Text } from 'react-native'
-import { AppLoading, Asset, Font, Icon, LinearGradient } from 'expo'
+import {View, Platform, StatusBar, Text } from 'react-native'
+import { AppLoading, Asset, Font, Icon } from 'expo'
 
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -28,7 +28,7 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <Provider store={store}>
             <PersistGate
@@ -37,7 +37,7 @@ export default class App extends React.Component {
               <AppNavigator />
             </PersistGate>
           </Provider>
-        </LinearGradient>
+        </View>
       )
     }
   }

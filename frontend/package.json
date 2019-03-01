@@ -7,7 +7,7 @@
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
     "rndom": "node node_modules/react-native/local-cli/cli.js start --config ../../../react-native-dom-expo/metro.config.js",
-    "devtools": "react-devtools"
+    "web": "react-devtools && open localhost:8081/dom?devtools"
   },
   "jest": {
     "preset": "jest-expo"
@@ -20,8 +20,6 @@
     "react": "^16.6.3",
     "react-native": "^0.57.8",
     "react-native-auth0": "^1.4.0",
-    "react-native-debugger": "^1.1.0",
-    "react-native-debugger-open": "^0.3.18",
     "react-native-dom": "^0.5.0",
     "react-native-dom-expo": "0.0.3",
     "react-navigation": "^3.0.9",
@@ -40,5 +38,6 @@
   "eslintConfig": {
     "extends": "universe/native"
   },
-  "private": true
+  "private": true,
+  "proxy": "http://localhost:5000"
 }

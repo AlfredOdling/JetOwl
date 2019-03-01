@@ -1,6 +1,6 @@
 import { AuthSession, Facebook } from 'expo'
 import { getStore } from '../App'
-const ngrokLocalhost = 'https://4388a8f5.ngrok.io'
+const ngrokLocalhost = 'http://6096571a.ngrok.io'
 const FB_APP_ID = '1850435378409537'
 
 /*

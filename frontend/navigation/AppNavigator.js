@@ -9,8 +9,11 @@ import {
 
 import HomeScreen from '../screens/HomeScreen'
 import SignupLoginScreen from '../screens/SignupLoginScreen'
+import AuthScreen from '../screens/AuthScreen'
+import AuthLoadingScreen from '../screens/AuthLoadingScreen'
 
 const HomeStack = createStackNavigator({
+  AuthScreenRoute: AuthScreen,
   SignupLoginScreenRoute: SignupLoginScreen,
   HomeScreenRoute: HomeScreen,
 })
@@ -26,8 +29,8 @@ const MainDrawerNavigator = createDrawerNavigator({
 // For authentication
 const SwitchNavigator = createSwitchNavigator(
   {
-    // AuthLoadingScreenRoute: AuthLoadingScreen,
-    // AuthScreenRoute: AuthScreen,
+    AuthLoadingScreenRoute: AuthLoadingScreen,
+    AuthScreenRoute: AuthScreen,
     MainRoute: MainDrawerNavigator,
   },
   {

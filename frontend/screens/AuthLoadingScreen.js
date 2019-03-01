@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
+import { LinearGradient } from 'expo'
 
 class AuthLoadingScreen extends React.Component {
   componentDidMount() {
@@ -12,9 +13,11 @@ class AuthLoadingScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>Vänta lite, kollar ifall du är inloggad...</Text>
-      </View>
+      <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ flex: 1 }}>
+        <View style={HomeScreenStyles}>
+          <Text>Vänta lite, kollar ifall du är inloggad...</Text>
+        </View>
+      </LinearGradient>
     )
   }
 }

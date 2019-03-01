@@ -1,8 +1,11 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { ScrollView, Button, View } from 'react-native'
+import { LinearGradient } from 'expo'
 import { connect } from 'react-redux'
 import _createUser from '../redux/2_actions/userActions/createUserAction'
 import _login from '../redux/2_actions/userActions/loginAction'
+import { HomeScreenStyles } from '../styles/HomeScreenStyles'
+import { YellowButton } from '../components/YellowButton'
 
 class AuthScreen extends React.Component {
   state = {
@@ -43,23 +46,23 @@ class AuthScreen extends React.Component {
 
   render() {
     const { _createUser, isLoggedIn, _login } = this.props
-
+    // isLoggedIn
     return (
-      <View style={{ padding: 100 }}>
-        {isLoggedIn ? (
-          <Button
-            color="#841584"
-            onPress={() => _login('FB')}
-            title={'Logga in med FB'}
-          />
-        ) : (
-          <Button
-            color="#841584"
-            onPress={() => _createUser('FB')}
-            title={'Skapa användare med FB'}
-          />
-        )}
-      </View>
+      <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ flex: 1 }}>
+        <ScrollView style={HomeScreenStyles}>
+
+            <YellowButton
+              marginTop={20}
+              text={'Logga in med Facebook'}
+              onPress={_login('FB')} />
+
+            <YellowButton
+              marginTop={20}
+              text={'Skapa användare med Facebook'}
+              onPress={_createUser('FB')} />
+
+        </ScrollView>
+      </LinearGradient>
     )
   }
 }
