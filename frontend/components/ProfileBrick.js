@@ -13,17 +13,25 @@ const _styleText = {
 }
 
 export const ProfileBrick = () => (
-  <LinearGradient colors={['#2B2B2B', '#1C1C1C']}>
-    <View style={{ ...layout._flexRow, ...layout._spaceMainAxis }}>
-      <_Image
-        uri="https://facebook.github.io/react-native/docs/assets/favicon.png"
-        radius={50}
-      />
-      <View style={{ _styleText }}>
-        <_Text text={'Anna Hellström'} type="rr_16_yellow" />
-        <_Text text={'25 år, Stockholm'} type="rr_16_yellow" />
-        <_Text text={'hej'} type="rm_16_white" />
+  <View
+    style={{
+      shadowOffset: { width: 0, height: 0 },
+      shadowColor: 'black',
+      shadowOpacity: 0.3,
+      shadowRadius: 7,
+    }}>
+    <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ padding: 20 }}>
+      <View style={{ ...layout._flexRow, ...layout._spaceMainAxis }}>
+        <_Image
+          uri="https://facebook.github.io/react-native/docs/assets/favicon.png"
+          radius={50}
+        />
+        <View style={{ _styleText }}>
+          <_Text text={'Anna Hellström'} type="rr_16_yellow" />
+          <_Text text={'25 år, Stockholm'} type="rr_16_yellow" />
+          <_Text text={'LinkedIn'} type="rm_16_white" />
+        </View>
       </View>
-    </View>
-  </LinearGradient>
+    </LinearGradient>
+  </View>
 )

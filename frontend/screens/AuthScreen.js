@@ -6,6 +6,8 @@ import _createUser from '../redux/2_actions/userActions/createUserAction'
 import _login from '../redux/2_actions/userActions/loginAction'
 import { HomeScreenStyles } from '../styles/HomeScreenStyles'
 import { YellowButton } from '../components/YellowButton'
+// import { viewWidth } from '../styles/utils'
+import { _Space } from '../components/general/_Space'
 
 class AuthScreen extends React.Component {
   state = {
@@ -51,10 +53,14 @@ class AuthScreen extends React.Component {
     // onPress={_createUser('FB')}
 
     return (
-      <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ flex: 1 }}>
+      <LinearGradient
+        colors={['#2B2B2B', '#1C1C1C']}
+        style={{ flex: 1, padding: 40 }}>
         <ScrollView style={HomeScreenStyles}>
-          <YellowButton marginTop={40} text={'Skapa användare med Facebook'} />
-          <YellowButton marginTop={40} hollow text={'Logga in med Facebook'} />
+          <_Space amount={100} />
+          <YellowButton text={'Skapa användare med Facebook'} />
+          <_Space amount={40} />
+          <YellowButton hollow text={'Logga in med Facebook'} />
         </ScrollView>
       </LinearGradient>
     )

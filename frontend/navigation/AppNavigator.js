@@ -13,25 +13,35 @@ import SignupLoginScreen from '../screens/SignupLoginScreen'
 import AuthScreen from '../screens/AuthScreen'
 import AuthLoadingScreen from '../screens/AuthLoadingScreen'
 import AdScreen from '../screens/AdScreen'
+import ProfileScreen from '../screens/ProfileScreen'
+import OfferCourseScreen from '../screens/OfferCourseScreen'
 
-import { DrawerContent } from '../components/DrawerContent'
+// import { DrawerContent } from '../components/DrawerContent'
 
-const HomeStack = createStackNavigator({
-  AdScreenRoute: AdScreen,
-  FeedScreenRoute: FeedScreen,
-  HomeScreenRoute: HomeScreen,
-  AuthScreenRoute: AuthScreen,
-  SignupLoginScreenRoute: SignupLoginScreen,
-})
+// const HomeStack = createStackNavigator({
+//   OfferCourseScreenRoute: OfferCourseScreen,
+//   ProfileScreenRoute: ProfileScreen,
+//   AdScreenRoute: AdScreen,
+//   FeedScreenRoute: FeedScreen,
+//   HomeScreenRoute: HomeScreen,
+//   AuthScreenRoute: AuthScreen,
+//   SignupLoginScreenRoute: SignupLoginScreen,
+// })
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Hem',
-}
+// HomeStack.navigationOptions = {
+//   tabBarLabel: 'Hem',
+// }
 
 // import DrawerContent here
 const MainDrawerNavigator = createDrawerNavigator(
   {
-    HomeStack,
+    HomeScreenRoute: HomeScreen,
+    AuthScreenRoute: AuthScreen,
+    SignupLoginScreenRoute: SignupLoginScreen,
+    FeedScreenRoute: FeedScreen,
+    OfferCourseScreenRoute: OfferCourseScreen,
+    AdScreenRoute: AdScreen,
+    ProfileScreenRoute: ProfileScreen,
   },
   {
     tabBarLabel: 'Hem',

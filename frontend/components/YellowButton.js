@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 
-export const YellowButton = ({ text, onPress, marginTop, hollow }) => {
+export const YellowButton = ({ text, onPress, hollow }) => {
   const _hollow = {
     backgroundColor: 'none',
     borderWidth: 2,
@@ -16,7 +16,6 @@ export const YellowButton = ({ text, onPress, marginTop, hollow }) => {
     <TouchableOpacity
       onPress={() => onPress()}
       style={{
-        marginTop,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',

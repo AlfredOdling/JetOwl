@@ -7,7 +7,7 @@ export const WhiteLine = () => (
       backgroundColor: 'white',
       height: 2,
       width: '100%',
-      marginVertical: 15,
+      marginVertical: 30,
     }}
   />
 )
