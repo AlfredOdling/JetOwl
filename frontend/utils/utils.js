@@ -2,6 +2,7 @@ import { AuthSession, Facebook } from 'expo'
 import { getStore } from '../App'
 const ngrokLocalhost = 'http://6096571a.ngrok.io'
 const FB_APP_ID = '1850435378409537'
+const isOffline = true
 
 /*
    EXAMPLE USE:
@@ -14,12 +15,19 @@ const FB_APP_ID = '1850435378409537'
 */
 
 export async function callGet(route) {
-  const response = await fetch(ngrokLocalhost + route)
-  const { status } = response
+  if (isOffline) {
+    return {
+      status: 200,
+      data: [],
+    }
+  } else {
+    const response = await fetch(ngrokLocalhost + route)
+    const { status } = response
 
-  return {
-    status,
-    data: await response.json(),
+    return {
+      status,
+      data: await response.json(),
+    }
   }
 }
 
@@ -45,124 +53,109 @@ export async function callGet(route) {
 */
 
 export async function callPost(route, body) {
-  const response = await fetch(ngrokLocalhost + route, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+  if (isOffline) {
+    return {
+      status: 200,
+      data: [],
+    }
+  } else {
+    const response = await fetch(ngrokLocalhost + route, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
 
-  const { status } = response
+    const { status } = response
 
-  return {
-    status,
-    data: await response.json(),
-  }
-}
-
-export async function uploadImageAsync(uri) {
-  let apiUrl = 'https://file-upload-example-backend-dkhqoilqqn.now.sh/upload'
-
-  // Note:
-  // Uncomment this if you want to experiment with local server
-  //
-  // if (Constants.isDevice) {
-  //   apiUrl = `https://your-ngrok-subdomain.ngrok.io/upload`;
-  // } else {
-  //   apiUrl = `http://localhost:3000/upload`
-  // }
-
-  let uriParts = uri.split('.')
-  let fileType = uriParts[uriParts.length - 1]
-
-  let formData = new FormData()
-  formData.append('photo', {
-    uri,
-    name: `photo.${fileType}`,
-    type: `image/${fileType}`,
-  })
-
-  let options = {
-    method: 'POST',
-    body: formData,
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
-    },
-  }
-
-  const response = await fetch(apiUrl, options)
-  const { statusMessage, status } = response
-
-  return {
-    errorMsg: statusMessage,
-    status,
-    data: await response.json(),
+    return {
+      status,
+      data: await response.json(),
+    }
   }
 }
 
 export async function loginFB() {
-  console.log('Facebook', Facebook)
+  if (isOffline) {
+    return {
+      status: 200,
+      data: [],
+    }
+  } else {
+    let response = await Facebook.logInWithReadPermissionsAsync(FB_APP_ID, {
+      permissions: ['public_profile'],
+      behavior: 'native',
+    })
+    console.log('response', response)
 
-  let response = await Facebook.logInWithReadPermissionsAsync(FB_APP_ID, {
-    permissions: ['public_profile'],
-    behavior: 'native',
-  })
-  console.log('response', response)
+    const { type, token } = response
 
-  const { type, token } = response
+    let returnStatement = {
+      status: type === 'success' ? 200 : 500,
+      data: { token },
+    }
 
-  let returnStatement = {
-    status: type === 'success' ? 200 : 500,
-    data: { token },
+    if (type === 'success') {
+      returnStatement = getUserInfoFB(token, returnStatement.data)
+    }
+
+    return returnStatement
   }
-
-  if (type === 'success') {
-    returnStatement = getUserInfoFB(token, returnStatement.data)
-  }
-
-  return returnStatement
 }
 
 async function getUserInfoFB(token, data) {
-  // Get the user's name and ID using Facebook's Graph API
-  const response = await fetch(
-    `https://graph.facebook.com/me?access_token=${token}`
-  )
+  if (isOffline) {
+    return {
+      status: 200,
+      data: [],
+    }
+  } else {
+    // Get the user's name and ID using Facebook's Graph API
+    const response = await fetch(
+      `https://graph.facebook.com/me?access_token=${token}`
+    )
 
-  const { status } = response
-  const { id, name } = await response.json()
+    const { status } = response
+    const { id, name } = await response.json()
 
-  const result = {
-    user_id: id,
-    user_full_name: name,
-  }
+    const result = {
+      user_id: id,
+      user_full_name: name,
+    }
 
-  // Append { token } with result
-  Object.assign(data, result)
+    // Append { token } with result
+    Object.assign(data, result)
 
-  return {
-    status,
-    data,
+    return {
+      status,
+      data,
+    }
   }
 }
 
 export async function logoutFB() {
-  const { token, id } = getStore().getState().userReducer.data
-
-  let response = await fetch(
-    'https://graph.facebook.com/' + id + '/permissions',
-    {
-      method: 'DELETE',
-      body: `access_token=${token}`,
+  if (isOffline) {
+    return {
+      status: 200,
+      data: [],
     }
-  )
-  const { status } = response
+  } else {
+    const { token, id } = getStore().getState().userReducer.data
 
-  return {
-    status,
-    data: await response.json(),
+    let response = await fetch(
+      'https://graph.facebook.com/' + id + '/permissions',
+      {
+        method: 'DELETE',
+        body: `access_token=${token}`,
+      }
+    )
+    const { status } = response
+
+    return {
+      status,
+      data: await response.json(),
+    }
   }
 }

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import Colors from '../constants/Colors'
+import { View } from 'react-native'
 
 export const YellowLine = ({ width }) => (
-  <View style={{ backgroundColor: '#D6C818', height: 4, width, marginTop: 5 }} />
+  <View
+    style={{ backgroundColor: '#D6C818', height: 4, width, marginTop: 5 }}
+  />
 )

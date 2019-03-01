@@ -47,20 +47,14 @@ class AuthScreen extends React.Component {
   render() {
     const { _createUser, isLoggedIn, _login } = this.props
     // isLoggedIn
+    // onPress={_login('FB')}
+    // onPress={_createUser('FB')}
+
     return (
       <LinearGradient colors={['#2B2B2B', '#1C1C1C']} style={{ flex: 1 }}>
         <ScrollView style={HomeScreenStyles}>
-
-            <YellowButton
-              marginTop={20}
-              text={'Logga in med Facebook'}
-              onPress={_login('FB')} />
-
-            <YellowButton
-              marginTop={20}
-              text={'Skapa användare med Facebook'}
-              onPress={_createUser('FB')} />
-
+          <YellowButton marginTop={40} text={'Skapa användare med Facebook'} />
+          <YellowButton marginTop={40} hollow text={'Logga in med Facebook'} />
         </ScrollView>
       </LinearGradient>
     )

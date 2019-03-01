@@ -1,28 +1,40 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import Colors from '../constants/Colors'
 
-export const YellowButton = ({ text, onPress, marginTop }) => (
-  <TouchableOpacity
-    onPress={() => onPress}
-    style={{
-      backgroundColor: '#F8E71C',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      shadowOffset: { width: 0, height: 0 },
-      shadowColor: 'black',
-      shadowOpacity: 1,
-      shadowRadius: 7,
-    }}>
-    <Text
+export const YellowButton = ({ text, onPress, marginTop, hollow }) => {
+  const _hollow = {
+    backgroundColor: 'none',
+    borderWidth: 2,
+    borderColor: '#F8E71C',
+  }
+  const _filled = {
+    backgroundColor: '#F8E71C',
+  }
+  const _style = hollow ? _hollow : _filled
+
+  return (
+    <TouchableOpacity
+      onPress={() => onPress()}
       style={{
-        fontSize: 16,
-        color: '#242424',
-        fontFamily: 'montserrat-bold',
-        margin: 20,
+        marginTop,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        shadowOffset: { width: 0, height: 0 },
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        shadowRadius: 7,
+        ..._style,
       }}>
-      {text}
-    </Text>
-  </TouchableOpacity>
-)
+      <Text
+        style={{
+          fontSize: 16,
+          color: hollow ? '#F8E71C' : '#242424',
+          fontFamily: 'montserrat-bold',
+          margin: 20,
+        }}>
+        {text}
+      </Text>
+    </TouchableOpacity>
+  )
+}

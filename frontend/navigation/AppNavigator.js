@@ -8,23 +8,38 @@ import {
 } from 'react-navigation'
 
 import HomeScreen from '../screens/HomeScreen'
+import FeedScreen from '../screens/FeedScreen'
 import SignupLoginScreen from '../screens/SignupLoginScreen'
 import AuthScreen from '../screens/AuthScreen'
 import AuthLoadingScreen from '../screens/AuthLoadingScreen'
+import AdScreen from '../screens/AdScreen'
+
+import { DrawerContent } from '../components/DrawerContent'
 
 const HomeStack = createStackNavigator({
+  AdScreenRoute: AdScreen,
+  FeedScreenRoute: FeedScreen,
+  HomeScreenRoute: HomeScreen,
   AuthScreenRoute: AuthScreen,
   SignupLoginScreenRoute: SignupLoginScreen,
-  HomeScreenRoute: HomeScreen,
 })
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Hem',
 }
 
-const MainDrawerNavigator = createDrawerNavigator({
-  HomeStack,
-})
+// import DrawerContent here
+const MainDrawerNavigator = createDrawerNavigator(
+  {
+    HomeStack,
+  },
+  {
+    tabBarLabel: 'Hem',
+    drawerBackgroundColor: '#1C1C1CF5',
+  }
+)
+
+// ---------------*************** MAIN NAV ****************------------------
 
 // For authentication
 const SwitchNavigator = createSwitchNavigator(

@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Platform, StatusBar, Text } from 'react-native'
+import { View, Platform, StatusBar, Text } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 
 import { Provider } from 'react-redux'
@@ -28,7 +28,7 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <Provider store={store}>
             <PersistGate
