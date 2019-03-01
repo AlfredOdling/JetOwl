@@ -8,7 +8,7 @@ import {
   Button,
 } from 'react-native'
 
-export default class SignupLogin extends React.Component {
+export default class SignupLoginScreen extends React.Component {
   render() {
     return (
       <ScrollView>

@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 
-import createUserReducer from './userReducers/createUserReducer'
-import loginReducer from './userReducers/loginReducer'
-import logoutReducer from './userReducers/logoutReducer'
+import createUserReducer from './createUserReducer'
+import loginReducer from './loginReducer'
+import logoutReducer from './logoutReducer'
 
 const configLogin = { key: 'loginReducer', storage }
 

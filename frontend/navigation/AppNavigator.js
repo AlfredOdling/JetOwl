@@ -4,13 +4,14 @@ import {
   createStackNavigator,
   createSwitchNavigator,
   createDrawerNavigator,
+  createAppContainer,
 } from 'react-navigation'
 
 import HomeScreen from '../screens/HomeScreen'
-import SignupLogin from '../screens/SignupLogin'
+import SignupLoginScreen from '../screens/SignupLoginScreen'
 
 const HomeStack = createStackNavigator({
-  SignupLoginRoute: SignupLogin,
+  SignupLoginScreenRoute: SignupLoginScreen,
   HomeScreenRoute: HomeScreen,
 })
 
@@ -23,7 +24,7 @@ const MainDrawerNavigator = createDrawerNavigator({
 })
 
 // For authentication
-export default createSwitchNavigator(
+const SwitchNavigator = createSwitchNavigator(
   {
     // AuthLoadingScreenRoute: AuthLoadingScreen,
     // AuthScreenRoute: AuthScreen,
@@ -33,3 +34,5 @@ export default createSwitchNavigator(
     initialRouteName: 'MainRoute',
   }
 )
+
+export default createAppContainer(SwitchNavigator)
