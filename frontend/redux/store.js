@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   navigationReducer,
 })
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // import logger from 'redux-logger'
 // const logger = createLogger({
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 function configureStore() {
   let store = createStore(
     rootReducer,
-    applyMiddleware(thunk) //logger
+    composeEnhancers(applyMiddleware(thunk)) //logger
   )
   let persistor = persistStore(store)
 

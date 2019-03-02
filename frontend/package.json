@@ -7,7 +7,7 @@
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
     "rndom": "node node_modules/react-native/local-cli/cli.js start --config ../../../react-native-dom-expo/metro.config.js",
-    "web": "react-devtools && open localhost:8081/dom?devtools"
+    "web": "npm run rndom && open localhost:8081/dom?devtools && react-devtools"
   },
   "jest": {
     "preset": "jest-expo"
